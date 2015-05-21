@@ -1,6 +1,8 @@
 <?php
 require '../vendor/autoload.php';
 Dotenv::load(__DIR__.'/..');
+use Adldap\Adldap;
+
 /**
  * Read parameters
  */
@@ -33,8 +35,13 @@ $config = [
  * Connect to LDAP
  */
 
-// #todo
+try {
+    $ad = new Adldap($config);
 
+    echo "Connected to LDAP.";
+} catch(AdldapException $e) {
+    echo "Uh oh, looks like we had an issue trying to connect: $e";
+}
 
 
 /**
@@ -42,7 +49,6 @@ $config = [
  */
 
 $results = 'not yet implemented';
-
 
 
 /**
