@@ -1,13 +1,5 @@
 <?php
 /**
- * LDAP Search Configuration
- */
-
-// #todo
-
-
-
-/**
  * Read parameters
  */
 if (array_key_exists('displayname',$_GET)) {
@@ -17,6 +9,22 @@ if (array_key_exists('displayname',$_GET)) {
 	http_response_code(400);
 	return;
 }
+
+
+
+/**
+ * LDAP Search Configuration
+ */
+
+$config = [
+	'account_suffix' => '',
+	'domain_controllers' => [''],
+	'base_dn' => '',
+	'admin_username' => '',
+	'admin_password' => ''
+];
+
+
 
 /**
  * Connect to LDAP
