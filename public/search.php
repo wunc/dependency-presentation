@@ -52,14 +52,15 @@ try {
 $results = 'not yet implemented';
 $results = $ad->search()
 	->where('displayname','=',$displayname)
-	->select(['displayname','department','title','mail'])
+	->select(['displayname','department','title','pea'])
+	->sortBy('displayname', 'asc')
 	->get();
 
 /**
  * Return response
  */
 ?>
-<table>
+<table class="table table-striped">
 	<caption>Search results for <?php echo $displayname; ?></caption>
 	<thead>
 		<tr>
@@ -75,7 +76,7 @@ $results = $ad->search()
 			<td><?php if (array_key_exists('displayname',$result)) echo $result['displayname']; ?></td>
 			<td><?php if (array_key_exists('department',$result)) echo $result['department']; ?></td>
 			<td><?php if (array_key_exists('title',$result)) echo $result['title']; ?></td>
-			<td><?php if (array_key_exists('mail',$result)) echo $result['mail']; ?></td>
+			<td><?php if (array_key_exists('pea',$result)) echo $result['pea']; ?></td>
 		</tr>
 		<?php } ?>
 	</tbody>

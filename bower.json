@@ -1,0 +1,20 @@
+{
+  "name": "ldap-search",
+  "version": "0.0.0",
+  "authors": [
+    "Wun Chiou <wun@utdallas.edu>"
+  ],
+  "main": "public/index.php",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4"
+  }
+}
