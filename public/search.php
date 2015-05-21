@@ -1,4 +1,6 @@
 <?php
+require '../vendor/autoload.php';
+Dotenv::load(__DIR__.'/..');
 /**
  * Read parameters
  */
@@ -18,10 +20,11 @@ if (array_key_exists('displayname',$_GET)) {
 
 $config = [
 	'account_suffix' => '',
-	'domain_controllers' => [''],
-	'base_dn' => '',
-	'admin_username' => '',
-	'admin_password' => ''
+	'domain_controllers' => [getenv('LDAP_DC')],
+	'base_dn' => getenv('LDAP_DN'),
+	'user_id_key' => getenv('LDAP_USERKEY'),
+	'admin_username' => getenv('LDAP_USER'),
+	'admin_password' => getenv('LDAP_PASS')
 ];
 
 
