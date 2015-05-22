@@ -1,0 +1,59 @@
+/*********************************************
+ * CUSTOMIZATIONS
+ *********************************************/
+
+.reveal table.pub1 td, .reveal table.pub1 td {
+  font-size: 1.75rem;
+}
+
+.reveal table tr.fragment:last-child td {
+	border-bottom: 1px solid #FFF;
+}
+
+.reveal table.pub1 tbody tr td:first-child {
+  color: white;
+  background-color: #5BC6E8;
+}
+
+.reveal table.pub1 tbody tr td:nth-child(2) {
+  color: white;
+  background-color: #FFB612;
+}
+
+.reveal table.pub1 tbody tr td:last-child {
+  color: white;
+  background-color: #69BE28;
+}
+
+.reveal li.blue {
+	font-weight: bold;
+	color: #5BC6E8;
+}
+
+#step02 img {
+  width: 300px;
+}
+
+/* BLINK!! */
+blink {
+  -webkit-animation: blink 1s step-end infinite;
+  -moz-animation: blink 1s step-end infinite
+  -o-animation: blink 1s step-end infinite;
+  animation: blink 1s step-end infinite
+}
+ 
+@-webkit-keyframes blink {
+  67% { opacity: 0 }
+}
+ 
+@-moz-keyframes blink {
+  67% { opacity: 0 }
+}
+ 
+@-o-keyframes blink {
+  67% { opacity: 0 }
+}
+ 
+@keyframes blink {
+  67% { opacity: 0 }
+}
