@@ -1,0 +1,27 @@
+{
+  "name": "wordpress-vm-presentation",
+  "version": "1.0.0",
+  "authors": [
+    "Wun Chiou <wun@utdallas.edu>"
+  ],
+  "description": "Presentation for Wordpress VM Meeting",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "keywords": [
+    "wp",
+    "presentation"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "reveal.js": "~3.0.0"
+  }
+}
