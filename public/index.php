@@ -9,16 +9,15 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container-fluid">
 <!-- Header -->
-<div class="jumbotron row">
-<header id="header" class="col-lg-5">
-	<h2>Search LDAP for People</h2>		
-</header>
+<section id="header" class="jumbotron row">
+	<header class="col-lg-4 col-lg-offset-2">
+		<h2>Search LDAP for People</h2>		
+	</header>
 
-<!-- Search -->
-<section id="main" class="">
-	<div class="col-lg-4 h2">
+	<!-- Search -->
+	<h2 id="main" class="col-lg-4">
 		<form id="searchform" class="form-horizontal" action="search.php" method="get" accept-charset="utf-8">
 			<div class="input-group">
 				<input id="searchbox" class="form-control" type="text" name="displayname" value="" placeholder="Search for people...">
@@ -29,19 +28,21 @@
 				</span>
 			</div>
 		</form>
-	</div>
+	</h2>
 </section>
 
-</div>
-
 <!-- Results -->
-<section id="results" class="row panel panel-default">
-<div class="panel-heading">
-	<div class="panel-title">Results</div>
-</div>
-<div class="panel-body">
-	<div id="searchresults">Use the search box above first.</div>
-</div>
+<section id="results" class="row">
+	<div class="col-xs-12 col-xl-8 col-xl-offset-2">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<div class="panel-title">Results</div>
+			</div>
+			<div class="panel-body">
+				<div id="searchresults">Use the search box above first.</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 </div>

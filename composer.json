@@ -1,6 +1,6 @@
 {
     "require": {
         "vlucas/phpdotenv": "^1.1",
-        "adldap2/adldap2": "dev-master"
+        "adldap2/adldap2": "^9.0.0"
     }
 }

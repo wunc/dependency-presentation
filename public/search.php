@@ -1,5 +1,6 @@
 <?php
 require '../vendor/autoload.php';
+require 'Schemas/ActiveDirectoryUTD.php';
 Dotenv::load(__DIR__.'/..');
 use Adldap\Adldap;
 
@@ -21,16 +22,16 @@ if (array_key_exists('displayname',$_GET)) {
  */
 
 $config = [
-	'account_suffix' => '',
-	'domain_controllers' => [getenv('LDAP_DC')],
-	'base_dn' => getenv('LDAP_DN'),
-	'person_filter' => 'objectClass=person',
-	'user_id_key' => getenv('LDAP_USERKEY'),
-	'admin_username' => getenv('LDAP_USER'),
-	'admin_password' => getenv('LDAP_PASS')
+	'default' => [
+		'account_suffix' => '',
+		'hosts' => [getenv('LDAP_DC')],
+		'port' => 389,
+		'base_dn' => getenv('LDAP_DN'),
+		'schema' => App\Ldap\Schemas\ActiveDirectoryUTD::class,
+		'username' => getenv('LDAP_USER'),
+		'password' => getenv('LDAP_PASS'),
+	],
 ];
-
-
 
 /**
  * Connect to LDAP
@@ -51,8 +52,19 @@ try {
 
 $results = 'not yet implemented';
 $results = $ad->search()
-	->where('displayname','=',$displayname)
-	->select(['displayname','department','title','pea'])
+	->where('displayname','contains',$displayname)
+	->select([
+		'displayname',
+		'dept',
+		'class',
+		'college',
+		'title',
+		'pea',
+		'uid',
+		'mail',
+		'telephonenumber',
+		'edupersonaffiliation'
+	])
 	->sortBy('displayname', 'asc')
 	->get();
 
@@ -61,22 +73,37 @@ $results = $ad->search()
  */
 ?>
 <table class="table table-striped">
-	<caption>Search results for <?php echo $displayname; ?></caption>
+	<caption><?= count($results->all()) ?> result(s) for &ldquo;<?= $displayname ?>&ldquo;</caption>
 	<thead>
 		<tr>
 			<th>Display Name</th>
+			<th>NetID</th>
 			<th>Department</th>
+			<th>Class</th>
+			<th>College</th>
 			<th>Title</th>
+			<th>Phone</th>
 			<th>Email</th>
+			<th>PEA</th>
+			<th>Affiliations</th>
 		</tr>
 	</thead>
 	<tbody>
-		<?php foreach ($results as $result) { ?>
+		<?php foreach ($results as $user) { ?>
 		<tr>
-			<td><?php if (array_key_exists('displayname',$result)) echo $result['displayname']; ?></td>
-			<td><?php if (array_key_exists('department',$result)) echo $result['department']; ?></td>
-			<td><?php if (array_key_exists('title',$result)) echo $result['title']; ?></td>
-			<td><?php if (array_key_exists('pea',$result)) echo $result['pea']; ?></td>
+			<td><?= $user->getFirstAttribute('displayname') ?></td>
+            <td><?= $user->getFirstAttribute('uid') ?></td>
+            <td><?= $user->getDepartment() ?></td>
+            <td><?= $user->getFirstAttribute('class') ?></td>
+            <td><?= $user->getFirstAttribute('college') ?></td>
+            <td><?= $user->getTitle() ?></td>
+            <td><?= $user->getTelephoneNumber() ?></td>
+            <td><?= $user->getEmail() ?></td>
+			<td><?= $user->getMailNickname() ?></td>
+			<td>
+				<?php $affiliations = $user->getAttribute('edupersonaffiliation'); ?>
+				<?= is_array($affiliations) ? implode(', ', $affiliations) : '' ?>
+			</td>
 		</tr>
 		<?php } ?>
 	</tbody>
