@@ -9,3 +9,5 @@ This repository is organized into branches that follow the steps in the presenta
 ```
 $ git checkout -f step-02
 ```
+
+This is a test branch.
